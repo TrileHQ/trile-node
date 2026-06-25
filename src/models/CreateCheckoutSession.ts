@@ -16,56 +16,56 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateSession
+ * @interface CreateCheckoutSession
  */
-export interface CreateSession {
+export interface CreateCheckoutSession {
     /**
      * 
      * @type {string}
-     * @memberof CreateSession
+     * @memberof CreateCheckoutSession
      */
     priceId: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateSession
+     * @memberof CreateCheckoutSession
      */
     successUrl: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateSession
+     * @memberof CreateCheckoutSession
      */
     cancelUrl: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateSession
+     * @memberof CreateCheckoutSession
      */
     linkId?: string;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof CreateSession
+     * @memberof CreateCheckoutSession
      */
     metadata?: { [key: string]: any; };
 }
 
 /**
- * Check if a given object implements the CreateSession interface.
+ * Check if a given object implements the CreateCheckoutSession interface.
  */
-export function instanceOfCreateSession(value: object): value is CreateSession {
+export function instanceOfCreateCheckoutSession(value: object): value is CreateCheckoutSession {
     if (!('priceId' in value) || value['priceId'] === undefined) return false;
     if (!('successUrl' in value) || value['successUrl'] === undefined) return false;
     if (!('cancelUrl' in value) || value['cancelUrl'] === undefined) return false;
     return true;
 }
 
-export function CreateSessionFromJSON(json: any): CreateSession {
-    return CreateSessionFromJSONTyped(json, false);
+export function CreateCheckoutSessionFromJSON(json: any): CreateCheckoutSession {
+    return CreateCheckoutSessionFromJSONTyped(json, false);
 }
 
-export function CreateSessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSession {
+export function CreateCheckoutSessionFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateCheckoutSession {
     if (json == null) {
         return json;
     }
@@ -79,11 +79,11 @@ export function CreateSessionFromJSONTyped(json: any, ignoreDiscriminator: boole
     };
 }
 
-export function CreateSessionToJSON(json: any): CreateSession {
-    return CreateSessionToJSONTyped(json, false);
+export function CreateCheckoutSessionToJSON(json: any): CreateCheckoutSession {
+    return CreateCheckoutSessionToJSONTyped(json, false);
 }
 
-export function CreateSessionToJSONTyped(value?: CreateSession | null, ignoreDiscriminator: boolean = false): any {
+export function CreateCheckoutSessionToJSONTyped(value?: CreateCheckoutSession | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

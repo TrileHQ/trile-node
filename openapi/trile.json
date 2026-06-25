@@ -732,7 +732,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSession"
+                "$ref": "#/components/schemas/CreateCheckoutSession"
               }
             }
           }
@@ -2431,7 +2431,7 @@
         ],
         "additionalProperties": false
       },
-      "CreateSession": {
+      "CreateCheckoutSession": {
         "type": "object",
         "properties": {
           "priceId": {

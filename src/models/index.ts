@@ -1,11 +1,11 @@
 /* tslint:disable */
 /* eslint-disable */
 export * from './CancelSubscription';
+export * from './CreateCheckoutSession';
 export * from './CreateCustomer';
 export * from './CreateInvoice';
 export * from './CreatePrice';
 export * from './CreateProduct';
-export * from './CreateSession';
 export * from './CreateSessionResponseOutput';
 export * from './CreateSubscription';
 export * from './CreateWebhookEndpoint';

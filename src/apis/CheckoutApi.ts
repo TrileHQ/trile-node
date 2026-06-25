@@ -15,18 +15,18 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreateSession,
+  CreateCheckoutSession,
   CreateSessionResponseOutput,
 } from '../models/index';
 import {
-    CreateSessionFromJSON,
-    CreateSessionToJSON,
+    CreateCheckoutSessionFromJSON,
+    CreateCheckoutSessionToJSON,
     CreateSessionResponseOutputFromJSON,
     CreateSessionResponseOutputToJSON,
 } from '../models/index';
 
 export interface CreateCheckoutSessionRequest {
-    createSession: CreateSession;
+    createCheckoutSession: CreateCheckoutSession;
     idempotencyKey?: string;
 }
 
@@ -39,10 +39,10 @@ export class CheckoutApi extends runtime.BaseAPI {
      * Create a checkout session for a price. Returns a cs_ id + a one-time public URL carrying the raw token. Idempotency-Key required on retries.
      */
     async createCheckoutSessionRaw(requestParameters: CreateCheckoutSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSessionResponseOutput>> {
-        if (requestParameters['createSession'] == null) {
+        if (requestParameters['createCheckoutSession'] == null) {
             throw new runtime.RequiredError(
-                'createSession',
-                'Required parameter "createSession" was null or undefined when calling createCheckoutSession().'
+                'createCheckoutSession',
+                'Required parameter "createCheckoutSession" was null or undefined when calling createCheckoutSession().'
             );
         }
 
@@ -68,7 +68,7 @@ export class CheckoutApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateSessionToJSON(requestParameters['createSession']),
+            body: CreateCheckoutSessionToJSON(requestParameters['createCheckoutSession']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateSessionResponseOutputFromJSON(jsonValue));
