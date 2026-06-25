@@ -63,7 +63,7 @@ export interface GetWebhookEndpointRequest {
 
 export interface ListWebhookDeliveriesRequest {
     id: string;
-    limit: string;
+    limit?: string;
     idempotencyKey?: string;
 }
 
@@ -241,13 +241,6 @@ export class WebhooksApi extends runtime.BaseAPI {
             throw new runtime.RequiredError(
                 'id',
                 'Required parameter "id" was null or undefined when calling listWebhookDeliveries().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listWebhookDeliveries().'
             );
         }
 

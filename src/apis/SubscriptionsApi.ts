@@ -51,9 +51,9 @@ export interface GetSubscriptionRequest {
 }
 
 export interface ListSubscriptionsRequest {
-    status: string;
-    limit: string;
-    cursor: string;
+    status?: string;
+    limit?: string;
+    cursor?: string;
     idempotencyKey?: string;
 }
 
@@ -219,27 +219,6 @@ export class SubscriptionsApi extends runtime.BaseAPI {
      * List subscriptions for the merchant business. Cursor pagination. Optional ?status= filter (trialing|active|past_due|unpaid|cancelled).
      */
     async listSubscriptionsRaw(requestParameters: ListSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionPageResponseOutput>> {
-        if (requestParameters['status'] == null) {
-            throw new runtime.RequiredError(
-                'status',
-                'Required parameter "status" was null or undefined when calling listSubscriptions().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listSubscriptions().'
-            );
-        }
-
-        if (requestParameters['cursor'] == null) {
-            throw new runtime.RequiredError(
-                'cursor',
-                'Required parameter "cursor" was null or undefined when calling listSubscriptions().'
-            );
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters['status'] != null) {
@@ -280,7 +259,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * List subscriptions for the merchant business. Cursor pagination. Optional ?status= filter (trialing|active|past_due|unpaid|cancelled).
      */
-    async listSubscriptions(requestParameters: ListSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionPageResponseOutput> {
+    async listSubscriptions(requestParameters: ListSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionPageResponseOutput> {
         const response = await this.listSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }

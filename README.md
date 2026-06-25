@@ -86,21 +86,14 @@ try {
 ## Pagination
 
 List endpoints return `{ items, nextCursor }`. Pass `nextCursor` back as `cursor`
-to fetch the next page; `nextCursor` is `null` on the last page.
+to fetch the next page; `nextCursor` is `null` on the last page. All filter
+arguments (e.g. `search`, `status`) are optional — pass only what you need.
 
 ```ts
 let cursor: string | undefined
 
 do {
-  const page = await customers.listCustomers({
-    limit: '50',
-    cursor: cursor ?? '',
-    // filters — pass '' to skip
-    search: '',
-    status: '',
-    createdFrom: '',
-    createdTo: '',
-  })
+  const page = await customers.listCustomers({ limit: '50', cursor })
   for (const customer of page.items) {
     console.log(customer.id, customer.email)
   }

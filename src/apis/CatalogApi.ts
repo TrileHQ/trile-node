@@ -80,17 +80,17 @@ export interface GetProductRequest {
 }
 
 export interface ListPricesRequest {
-    productId: string;
-    active: string;
-    limit: string;
-    cursor: string;
+    productId?: string;
+    active?: string;
+    limit?: string;
+    cursor?: string;
     idempotencyKey?: string;
 }
 
 export interface ListProductsRequest {
-    active: string;
-    limit: string;
-    cursor: string;
+    active?: string;
+    limit?: string;
+    cursor?: string;
     idempotencyKey?: string;
 }
 
@@ -395,34 +395,6 @@ export class CatalogApi extends runtime.BaseAPI {
      * List prices for the merchant business (cursor pagination, optional ?productId= filter).
      */
     async listPricesRaw(requestParameters: ListPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PricePageResponseOutput>> {
-        if (requestParameters['productId'] == null) {
-            throw new runtime.RequiredError(
-                'productId',
-                'Required parameter "productId" was null or undefined when calling listPrices().'
-            );
-        }
-
-        if (requestParameters['active'] == null) {
-            throw new runtime.RequiredError(
-                'active',
-                'Required parameter "active" was null or undefined when calling listPrices().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listPrices().'
-            );
-        }
-
-        if (requestParameters['cursor'] == null) {
-            throw new runtime.RequiredError(
-                'cursor',
-                'Required parameter "cursor" was null or undefined when calling listPrices().'
-            );
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters['productId'] != null) {
@@ -467,7 +439,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * List prices for the merchant business (cursor pagination, optional ?productId= filter).
      */
-    async listPrices(requestParameters: ListPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricePageResponseOutput> {
+    async listPrices(requestParameters: ListPricesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricePageResponseOutput> {
         const response = await this.listPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -476,27 +448,6 @@ export class CatalogApi extends runtime.BaseAPI {
      * List products for the merchant business (cursor pagination, active=true default).
      */
     async listProductsRaw(requestParameters: ListProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPageResponseOutput>> {
-        if (requestParameters['active'] == null) {
-            throw new runtime.RequiredError(
-                'active',
-                'Required parameter "active" was null or undefined when calling listProducts().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listProducts().'
-            );
-        }
-
-        if (requestParameters['cursor'] == null) {
-            throw new runtime.RequiredError(
-                'cursor',
-                'Required parameter "cursor" was null or undefined when calling listProducts().'
-            );
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters['active'] != null) {
@@ -537,7 +488,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * List products for the merchant business (cursor pagination, active=true default).
      */
-    async listProducts(requestParameters: ListProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPageResponseOutput> {
+    async listProducts(requestParameters: ListProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPageResponseOutput> {
         const response = await this.listProductsRaw(requestParameters, initOverrides);
         return await response.value();
     }

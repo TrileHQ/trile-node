@@ -50,12 +50,12 @@ export interface GetCustomerRequest {
 }
 
 export interface ListCustomersRequest {
-    search: string;
-    status: string;
-    createdFrom: string;
-    createdTo: string;
-    limit: string;
-    cursor: string;
+    search?: string;
+    status?: string;
+    createdFrom?: string;
+    createdTo?: string;
+    limit?: string;
+    cursor?: string;
     idempotencyKey?: string;
 }
 
@@ -211,48 +211,6 @@ export class CustomersApi extends runtime.BaseAPI {
      * List customers for the merchant business (cursor pagination, archived excluded).
      */
     async listCustomersRaw(requestParameters: ListCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPageResponseOutput>> {
-        if (requestParameters['search'] == null) {
-            throw new runtime.RequiredError(
-                'search',
-                'Required parameter "search" was null or undefined when calling listCustomers().'
-            );
-        }
-
-        if (requestParameters['status'] == null) {
-            throw new runtime.RequiredError(
-                'status',
-                'Required parameter "status" was null or undefined when calling listCustomers().'
-            );
-        }
-
-        if (requestParameters['createdFrom'] == null) {
-            throw new runtime.RequiredError(
-                'createdFrom',
-                'Required parameter "createdFrom" was null or undefined when calling listCustomers().'
-            );
-        }
-
-        if (requestParameters['createdTo'] == null) {
-            throw new runtime.RequiredError(
-                'createdTo',
-                'Required parameter "createdTo" was null or undefined when calling listCustomers().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listCustomers().'
-            );
-        }
-
-        if (requestParameters['cursor'] == null) {
-            throw new runtime.RequiredError(
-                'cursor',
-                'Required parameter "cursor" was null or undefined when calling listCustomers().'
-            );
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters['search'] != null) {
@@ -305,7 +263,7 @@ export class CustomersApi extends runtime.BaseAPI {
     /**
      * List customers for the merchant business (cursor pagination, archived excluded).
      */
-    async listCustomers(requestParameters: ListCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPageResponseOutput> {
+    async listCustomers(requestParameters: ListCustomersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPageResponseOutput> {
         const response = await this.listCustomersRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -31,14 +31,14 @@ export interface GetEventRequest {
 }
 
 export interface ListEventsRequest {
-    type: string;
-    resourceType: string;
-    resourceId: string;
-    dateRange: string;
-    createdFrom: string;
-    createdTo: string;
-    limit: string;
-    cursor: string;
+    type?: string;
+    resourceType?: string;
+    resourceId?: string;
+    dateRange?: string;
+    createdFrom?: string;
+    createdTo?: string;
+    limit?: string;
+    cursor?: string;
     idempotencyKey?: string;
 }
 
@@ -96,62 +96,6 @@ export class EventsApi extends runtime.BaseAPI {
      * List domain events for the merchant business (keyset cursor pagination).
      */
     async listEventsRaw(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventPageResponseOutput>> {
-        if (requestParameters['type'] == null) {
-            throw new runtime.RequiredError(
-                'type',
-                'Required parameter "type" was null or undefined when calling listEvents().'
-            );
-        }
-
-        if (requestParameters['resourceType'] == null) {
-            throw new runtime.RequiredError(
-                'resourceType',
-                'Required parameter "resourceType" was null or undefined when calling listEvents().'
-            );
-        }
-
-        if (requestParameters['resourceId'] == null) {
-            throw new runtime.RequiredError(
-                'resourceId',
-                'Required parameter "resourceId" was null or undefined when calling listEvents().'
-            );
-        }
-
-        if (requestParameters['dateRange'] == null) {
-            throw new runtime.RequiredError(
-                'dateRange',
-                'Required parameter "dateRange" was null or undefined when calling listEvents().'
-            );
-        }
-
-        if (requestParameters['createdFrom'] == null) {
-            throw new runtime.RequiredError(
-                'createdFrom',
-                'Required parameter "createdFrom" was null or undefined when calling listEvents().'
-            );
-        }
-
-        if (requestParameters['createdTo'] == null) {
-            throw new runtime.RequiredError(
-                'createdTo',
-                'Required parameter "createdTo" was null or undefined when calling listEvents().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listEvents().'
-            );
-        }
-
-        if (requestParameters['cursor'] == null) {
-            throw new runtime.RequiredError(
-                'cursor',
-                'Required parameter "cursor" was null or undefined when calling listEvents().'
-            );
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters['type'] != null) {
@@ -212,7 +156,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * List domain events for the merchant business (keyset cursor pagination).
      */
-    async listEvents(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventPageResponseOutput> {
+    async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventPageResponseOutput> {
         const response = await this.listEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }

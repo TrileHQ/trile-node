@@ -56,9 +56,9 @@ export interface ListInvoiceEventsRequest {
 }
 
 export interface ListInvoicesRequest {
-    status: string;
-    limit: string;
-    cursor: string;
+    status?: string;
+    limit?: string;
+    cursor?: string;
     idempotencyKey?: string;
 }
 
@@ -219,27 +219,6 @@ export class InvoicesApi extends runtime.BaseAPI {
      * List invoices for the merchant business. Cursor pagination. Optional ?status= filter (open|paid|void|uncollectible).
      */
     async listInvoicesRaw(requestParameters: ListInvoicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InvoicePageResponseOutput>> {
-        if (requestParameters['status'] == null) {
-            throw new runtime.RequiredError(
-                'status',
-                'Required parameter "status" was null or undefined when calling listInvoices().'
-            );
-        }
-
-        if (requestParameters['limit'] == null) {
-            throw new runtime.RequiredError(
-                'limit',
-                'Required parameter "limit" was null or undefined when calling listInvoices().'
-            );
-        }
-
-        if (requestParameters['cursor'] == null) {
-            throw new runtime.RequiredError(
-                'cursor',
-                'Required parameter "cursor" was null or undefined when calling listInvoices().'
-            );
-        }
-
         const queryParameters: any = {};
 
         if (requestParameters['status'] != null) {
@@ -280,7 +259,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * List invoices for the merchant business. Cursor pagination. Optional ?status= filter (open|paid|void|uncollectible).
      */
-    async listInvoices(requestParameters: ListInvoicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InvoicePageResponseOutput> {
+    async listInvoices(requestParameters: ListInvoicesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InvoicePageResponseOutput> {
         const response = await this.listInvoicesRaw(requestParameters, initOverrides);
         return await response.value();
     }
