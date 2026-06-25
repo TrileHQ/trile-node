@@ -22,17 +22,17 @@ const config = new Configuration({
 
 const customers = new CustomersApi(config)
 
-const customer = await customers.v1CustomersPost({
+const customer = await customers.createCustomer({
+  createCustomer: { email: 'aarav@example.com.np', name: 'Aarav Sharma' },
   idempotencyKey: crypto.randomUUID(),
-  customerCreate: { email: 'aarav@example.com.np', name: 'Aarav Sharma' },
 })
 
 console.log(customer.id)
 ```
 
-Each API tag in the spec becomes its own client class: `CustomersApi`, `SubscriptionsApi`, `CheckoutApi`, `InvoicesApi`, `WebhooksApi`, `EventsApi`, `WalletApi`, and the catalog (`ProductsApi`, `PricesApi`).
+Each API tag becomes its own client class: `CustomersApi`, `CatalogApi` (products + prices), `SubscriptionsApi`, `InvoicesApi`, `CheckoutApi`, `WebhooksApi`, and `EventsApi`. Method names are derived from the API's `operationId`s, so they read cleanly — `createCustomer`, `listInvoices`, `createCheckoutSession`, etc.
 
-> **Method names** like `v1CustomersPost` are auto-derived from the HTTP path because the OpenAPI spec is missing `operationId`s. Add operationIds in the backend (see below) to get clean names like `customers.create()` — then `npm run sync:spec && npm run generate`.
+This SDK covers only the public **API-key** surface (the endpoints a merchant integration calls). Session-only dashboard, admin, and end-user checkout routes are intentionally excluded — it's generated from the backend's filtered `/public/openapi.json`, not the full `/docs-json`.
 
 ## Development
 
