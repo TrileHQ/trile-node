@@ -15,33 +15,33 @@
 
 import * as runtime from '../runtime';
 import type {
-  CancelSubscriptionRequest,
-  CreateSubscriptionRequest,
+  CancelSubscription,
+  CreateSubscription,
   SubscriptionPageResponseOutput,
   SubscriptionResponseOutput,
-  UpdateSubscriptionRequest,
+  UpdateSubscription,
 } from '../models/index';
 import {
-    CancelSubscriptionRequestFromJSON,
-    CancelSubscriptionRequestToJSON,
-    CreateSubscriptionRequestFromJSON,
-    CreateSubscriptionRequestToJSON,
+    CancelSubscriptionFromJSON,
+    CancelSubscriptionToJSON,
+    CreateSubscriptionFromJSON,
+    CreateSubscriptionToJSON,
     SubscriptionPageResponseOutputFromJSON,
     SubscriptionPageResponseOutputToJSON,
     SubscriptionResponseOutputFromJSON,
     SubscriptionResponseOutputToJSON,
-    UpdateSubscriptionRequestFromJSON,
-    UpdateSubscriptionRequestToJSON,
+    UpdateSubscriptionFromJSON,
+    UpdateSubscriptionToJSON,
 } from '../models/index';
 
-export interface CancelSubscriptionOperationRequest {
+export interface CancelSubscriptionRequest {
     id: string;
-    cancelSubscriptionRequest: CancelSubscriptionRequest;
+    cancelSubscription: CancelSubscription;
     idempotencyKey?: string;
 }
 
-export interface CreateSubscriptionOperationRequest {
-    createSubscriptionRequest: CreateSubscriptionRequest;
+export interface CreateSubscriptionRequest {
+    createSubscription: CreateSubscription;
     idempotencyKey?: string;
 }
 
@@ -57,9 +57,9 @@ export interface ListSubscriptionsRequest {
     idempotencyKey?: string;
 }
 
-export interface UpdateSubscriptionOperationRequest {
+export interface UpdateSubscriptionRequest {
     id: string;
-    updateSubscriptionRequest: UpdateSubscriptionRequest;
+    updateSubscription: UpdateSubscription;
     idempotencyKey?: string;
 }
 
@@ -71,7 +71,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Cancel a subscription. Default (cancelAtPeriodEnd=false) is immediate. Set cancelAtPeriodEnd=true to cancel at period end.
      */
-    async cancelSubscriptionRaw(requestParameters: CancelSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
+    async cancelSubscriptionRaw(requestParameters: CancelSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -79,10 +79,10 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['cancelSubscriptionRequest'] == null) {
+        if (requestParameters['cancelSubscription'] == null) {
             throw new runtime.RequiredError(
-                'cancelSubscriptionRequest',
-                'Required parameter "cancelSubscriptionRequest" was null or undefined when calling cancelSubscription().'
+                'cancelSubscription',
+                'Required parameter "cancelSubscription" was null or undefined when calling cancelSubscription().'
             );
         }
 
@@ -109,7 +109,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CancelSubscriptionRequestToJSON(requestParameters['cancelSubscriptionRequest']),
+            body: CancelSubscriptionToJSON(requestParameters['cancelSubscription']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionResponseOutputFromJSON(jsonValue));
@@ -118,7 +118,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Cancel a subscription. Default (cancelAtPeriodEnd=false) is immediate. Set cancelAtPeriodEnd=true to cancel at period end.
      */
-    async cancelSubscription(requestParameters: CancelSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
+    async cancelSubscription(requestParameters: CancelSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
         const response = await this.cancelSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -126,11 +126,11 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Create a subscription for a customer. Idempotency-Key required on retries. Charge is immediate unless price has a trial and skipTrial=false.
      */
-    async createSubscriptionRaw(requestParameters: CreateSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
-        if (requestParameters['createSubscriptionRequest'] == null) {
+    async createSubscriptionRaw(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
+        if (requestParameters['createSubscription'] == null) {
             throw new runtime.RequiredError(
-                'createSubscriptionRequest',
-                'Required parameter "createSubscriptionRequest" was null or undefined when calling createSubscription().'
+                'createSubscription',
+                'Required parameter "createSubscription" was null or undefined when calling createSubscription().'
             );
         }
 
@@ -156,7 +156,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateSubscriptionRequestToJSON(requestParameters['createSubscriptionRequest']),
+            body: CreateSubscriptionToJSON(requestParameters['createSubscription']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionResponseOutputFromJSON(jsonValue));
@@ -165,7 +165,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Create a subscription for a customer. Idempotency-Key required on retries. Charge is immediate unless price has a trial and skipTrial=false.
      */
-    async createSubscription(requestParameters: CreateSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
+    async createSubscription(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
         const response = await this.createSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -267,7 +267,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Update mutable fields on a subscription: metadata (partial merge) and cancelAtPeriodEnd (one-way, can only be set to true).
      */
-    async updateSubscriptionRaw(requestParameters: UpdateSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
+    async updateSubscriptionRaw(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -275,10 +275,10 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['updateSubscriptionRequest'] == null) {
+        if (requestParameters['updateSubscription'] == null) {
             throw new runtime.RequiredError(
-                'updateSubscriptionRequest',
-                'Required parameter "updateSubscriptionRequest" was null or undefined when calling updateSubscription().'
+                'updateSubscription',
+                'Required parameter "updateSubscription" was null or undefined when calling updateSubscription().'
             );
         }
 
@@ -305,7 +305,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateSubscriptionRequestToJSON(requestParameters['updateSubscriptionRequest']),
+            body: UpdateSubscriptionToJSON(requestParameters['updateSubscription']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionResponseOutputFromJSON(jsonValue));
@@ -314,7 +314,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Update mutable fields on a subscription: metadata (partial merge) and cancelAtPeriodEnd (one-way, can only be set to true).
      */
-    async updateSubscription(requestParameters: UpdateSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
+    async updateSubscription(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
         const response = await this.updateSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }

@@ -1,14 +1,14 @@
 /* tslint:disable */
 /* eslint-disable */
-export * from './CancelSubscriptionRequest';
+export * from './CancelSubscription';
 export * from './CreateCustomer';
-export * from './CreateInvoiceBodyDto';
+export * from './CreateInvoice';
 export * from './CreatePrice';
 export * from './CreateProduct';
 export * from './CreateSession';
 export * from './CreateSessionResponseOutput';
-export * from './CreateSubscriptionRequest';
-export * from './CreateWebhookEndpointBodyDto';
+export * from './CreateSubscription';
+export * from './CreateWebhookEndpoint';
 export * from './CustomerArchiveResponseOutput';
 export * from './CustomerPageResponseOutput';
 export * from './CustomerResponseOutput';
@@ -31,11 +31,11 @@ export * from './SubscriptionPageResponseOutput';
 export * from './SubscriptionResponseOutput';
 export * from './TestWebhookResponseOutput';
 export * from './UpdateCustomer';
-export * from './UpdateInvoiceBodyDto';
+export * from './UpdateInvoice';
 export * from './UpdatePrice';
 export * from './UpdateProduct';
-export * from './UpdateSubscriptionRequest';
-export * from './UpdateWebhookEndpointBodyDto';
+export * from './UpdateSubscription';
+export * from './UpdateWebhookEndpoint';
 export * from './WebhookDeliveryResponseDtoOutput';
 export * from './WebhookDeliveryResponseDtoOutputRequest';
 export * from './WebhookDeliveryResponseDtoOutputResponse';

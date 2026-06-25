@@ -15,27 +15,27 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreateWebhookEndpointBodyDto,
+  CreateWebhookEndpoint,
   ReplayWebhookResponseOutput,
   RotateWebhookSecretResponseOutput,
   TestWebhookResponseOutput,
-  UpdateWebhookEndpointBodyDto,
+  UpdateWebhookEndpoint,
   WebhookDeliveryResponseDtoOutput,
   WebhookEndpointPageResponseOutput,
   WebhookEndpointResponseOutput,
   WebhookEndpointWithSecretResponseOutput,
 } from '../models/index';
 import {
-    CreateWebhookEndpointBodyDtoFromJSON,
-    CreateWebhookEndpointBodyDtoToJSON,
+    CreateWebhookEndpointFromJSON,
+    CreateWebhookEndpointToJSON,
     ReplayWebhookResponseOutputFromJSON,
     ReplayWebhookResponseOutputToJSON,
     RotateWebhookSecretResponseOutputFromJSON,
     RotateWebhookSecretResponseOutputToJSON,
     TestWebhookResponseOutputFromJSON,
     TestWebhookResponseOutputToJSON,
-    UpdateWebhookEndpointBodyDtoFromJSON,
-    UpdateWebhookEndpointBodyDtoToJSON,
+    UpdateWebhookEndpointFromJSON,
+    UpdateWebhookEndpointToJSON,
     WebhookDeliveryResponseDtoOutputFromJSON,
     WebhookDeliveryResponseDtoOutputToJSON,
     WebhookEndpointPageResponseOutputFromJSON,
@@ -47,7 +47,7 @@ import {
 } from '../models/index';
 
 export interface CreateWebhookEndpointRequest {
-    createWebhookEndpointBodyDto: CreateWebhookEndpointBodyDto;
+    createWebhookEndpoint: CreateWebhookEndpoint;
     idempotencyKey?: string;
 }
 
@@ -88,7 +88,7 @@ export interface SendTestWebhookRequest {
 
 export interface UpdateWebhookEndpointRequest {
     id: string;
-    updateWebhookEndpointBodyDto: UpdateWebhookEndpointBodyDto;
+    updateWebhookEndpoint: UpdateWebhookEndpoint;
     idempotencyKey?: string;
 }
 
@@ -101,10 +101,10 @@ export class WebhooksApi extends runtime.BaseAPI {
      * Register a new webhook endpoint for the merchant business. Returns the generated signing secret — shown only once and must be stored securely.
      */
     async createWebhookEndpointRaw(requestParameters: CreateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointWithSecretResponseOutput>> {
-        if (requestParameters['createWebhookEndpointBodyDto'] == null) {
+        if (requestParameters['createWebhookEndpoint'] == null) {
             throw new runtime.RequiredError(
-                'createWebhookEndpointBodyDto',
-                'Required parameter "createWebhookEndpointBodyDto" was null or undefined when calling createWebhookEndpoint().'
+                'createWebhookEndpoint',
+                'Required parameter "createWebhookEndpoint" was null or undefined when calling createWebhookEndpoint().'
             );
         }
 
@@ -130,7 +130,7 @@ export class WebhooksApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateWebhookEndpointBodyDtoToJSON(requestParameters['createWebhookEndpointBodyDto']),
+            body: CreateWebhookEndpointToJSON(requestParameters['createWebhookEndpoint']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointWithSecretResponseOutputFromJSON(jsonValue));
@@ -465,10 +465,10 @@ export class WebhooksApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['updateWebhookEndpointBodyDto'] == null) {
+        if (requestParameters['updateWebhookEndpoint'] == null) {
             throw new runtime.RequiredError(
-                'updateWebhookEndpointBodyDto',
-                'Required parameter "updateWebhookEndpointBodyDto" was null or undefined when calling updateWebhookEndpoint().'
+                'updateWebhookEndpoint',
+                'Required parameter "updateWebhookEndpoint" was null or undefined when calling updateWebhookEndpoint().'
             );
         }
 
@@ -495,7 +495,7 @@ export class WebhooksApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateWebhookEndpointBodyDtoToJSON(requestParameters['updateWebhookEndpointBodyDto']),
+            body: UpdateWebhookEndpointToJSON(requestParameters['updateWebhookEndpoint']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointResponseOutputFromJSON(jsonValue));

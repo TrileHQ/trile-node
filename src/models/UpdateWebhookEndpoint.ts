@@ -16,47 +16,47 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface UpdateWebhookEndpointBodyDto
+ * @interface UpdateWebhookEndpoint
  */
-export interface UpdateWebhookEndpointBodyDto {
+export interface UpdateWebhookEndpoint {
     /**
      * 
      * @type {string}
-     * @memberof UpdateWebhookEndpointBodyDto
+     * @memberof UpdateWebhookEndpoint
      */
     url?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof UpdateWebhookEndpointBodyDto
+     * @memberof UpdateWebhookEndpoint
      */
     enabled_events?: Array<string>;
     /**
      * 
      * @type {boolean}
-     * @memberof UpdateWebhookEndpointBodyDto
+     * @memberof UpdateWebhookEndpoint
      */
     active?: boolean;
     /**
      * 
      * @type {{ [key: string]: string | null; }}
-     * @memberof UpdateWebhookEndpointBodyDto
+     * @memberof UpdateWebhookEndpoint
      */
     metadata?: { [key: string]: string | null; };
 }
 
 /**
- * Check if a given object implements the UpdateWebhookEndpointBodyDto interface.
+ * Check if a given object implements the UpdateWebhookEndpoint interface.
  */
-export function instanceOfUpdateWebhookEndpointBodyDto(value: object): value is UpdateWebhookEndpointBodyDto {
+export function instanceOfUpdateWebhookEndpoint(value: object): value is UpdateWebhookEndpoint {
     return true;
 }
 
-export function UpdateWebhookEndpointBodyDtoFromJSON(json: any): UpdateWebhookEndpointBodyDto {
-    return UpdateWebhookEndpointBodyDtoFromJSONTyped(json, false);
+export function UpdateWebhookEndpointFromJSON(json: any): UpdateWebhookEndpoint {
+    return UpdateWebhookEndpointFromJSONTyped(json, false);
 }
 
-export function UpdateWebhookEndpointBodyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateWebhookEndpointBodyDto {
+export function UpdateWebhookEndpointFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateWebhookEndpoint {
     if (json == null) {
         return json;
     }
@@ -69,11 +69,11 @@ export function UpdateWebhookEndpointBodyDtoFromJSONTyped(json: any, ignoreDiscr
     };
 }
 
-export function UpdateWebhookEndpointBodyDtoToJSON(json: any): UpdateWebhookEndpointBodyDto {
-    return UpdateWebhookEndpointBodyDtoToJSONTyped(json, false);
+export function UpdateWebhookEndpointToJSON(json: any): UpdateWebhookEndpoint {
+    return UpdateWebhookEndpointToJSONTyped(json, false);
 }
 
-export function UpdateWebhookEndpointBodyDtoToJSONTyped(value?: UpdateWebhookEndpointBodyDto | null, ignoreDiscriminator: boolean = false): any {
+export function UpdateWebhookEndpointToJSONTyped(value?: UpdateWebhookEndpoint | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

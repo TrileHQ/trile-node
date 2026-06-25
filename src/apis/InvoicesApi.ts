@@ -15,17 +15,17 @@
 
 import * as runtime from '../runtime';
 import type {
-  CreateInvoiceBodyDto,
+  CreateInvoice,
   InvoiceEventResponseDtoOutput,
   InvoiceMutationResponseOutput,
   InvoicePageResponseOutput,
   InvoiceResponseOutput,
   SendInvoiceResponseOutput,
-  UpdateInvoiceBodyDto,
+  UpdateInvoice,
 } from '../models/index';
 import {
-    CreateInvoiceBodyDtoFromJSON,
-    CreateInvoiceBodyDtoToJSON,
+    CreateInvoiceFromJSON,
+    CreateInvoiceToJSON,
     InvoiceEventResponseDtoOutputFromJSON,
     InvoiceEventResponseDtoOutputToJSON,
     InvoiceMutationResponseOutputFromJSON,
@@ -36,12 +36,12 @@ import {
     InvoiceResponseOutputToJSON,
     SendInvoiceResponseOutputFromJSON,
     SendInvoiceResponseOutputToJSON,
-    UpdateInvoiceBodyDtoFromJSON,
-    UpdateInvoiceBodyDtoToJSON,
+    UpdateInvoiceFromJSON,
+    UpdateInvoiceToJSON,
 } from '../models/index';
 
 export interface CreateInvoiceRequest {
-    createInvoiceBodyDto: CreateInvoiceBodyDto;
+    createInvoice: CreateInvoice;
     idempotencyKey?: string;
 }
 
@@ -69,7 +69,7 @@ export interface SendInvoiceRequest {
 
 export interface UpdateInvoiceRequest {
     id: string;
-    updateInvoiceBodyDto: UpdateInvoiceBodyDto;
+    updateInvoice: UpdateInvoice;
     idempotencyKey?: string;
 }
 
@@ -82,10 +82,10 @@ export class InvoicesApi extends runtime.BaseAPI {
      * Create a subscription-scoped invoice in draft status. Idempotency-Key required on retries.
      */
     async createInvoiceRaw(requestParameters: CreateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InvoiceMutationResponseOutput>> {
-        if (requestParameters['createInvoiceBodyDto'] == null) {
+        if (requestParameters['createInvoice'] == null) {
             throw new runtime.RequiredError(
-                'createInvoiceBodyDto',
-                'Required parameter "createInvoiceBodyDto" was null or undefined when calling createInvoice().'
+                'createInvoice',
+                'Required parameter "createInvoice" was null or undefined when calling createInvoice().'
             );
         }
 
@@ -111,7 +111,7 @@ export class InvoicesApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateInvoiceBodyDtoToJSON(requestParameters['createInvoiceBodyDto']),
+            body: CreateInvoiceToJSON(requestParameters['createInvoice']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceMutationResponseOutputFromJSON(jsonValue));
@@ -320,10 +320,10 @@ export class InvoicesApi extends runtime.BaseAPI {
             );
         }
 
-        if (requestParameters['updateInvoiceBodyDto'] == null) {
+        if (requestParameters['updateInvoice'] == null) {
             throw new runtime.RequiredError(
-                'updateInvoiceBodyDto',
-                'Required parameter "updateInvoiceBodyDto" was null or undefined when calling updateInvoice().'
+                'updateInvoice',
+                'Required parameter "updateInvoice" was null or undefined when calling updateInvoice().'
             );
         }
 
@@ -350,7 +350,7 @@ export class InvoicesApi extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateInvoiceBodyDtoToJSON(requestParameters['updateInvoiceBodyDto']),
+            body: UpdateInvoiceToJSON(requestParameters['updateInvoice']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceMutationResponseOutputFromJSON(jsonValue));

@@ -779,7 +779,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateSubscriptionRequest"
+                "$ref": "#/components/schemas/CreateSubscription"
               }
             }
           }
@@ -936,7 +936,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateSubscriptionRequest"
+                "$ref": "#/components/schemas/UpdateSubscription"
               }
             }
           }
@@ -991,7 +991,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CancelSubscriptionRequest"
+                "$ref": "#/components/schemas/CancelSubscription"
               }
             }
           }
@@ -1097,7 +1097,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateInvoiceBodyDto"
+                "$ref": "#/components/schemas/CreateInvoice"
               }
             }
           }
@@ -1195,7 +1195,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateInvoiceBodyDto"
+                "$ref": "#/components/schemas/UpdateInvoice"
               }
             }
           }
@@ -1335,7 +1335,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateWebhookEndpointBodyDto"
+                "$ref": "#/components/schemas/CreateWebhookEndpoint"
               }
             }
           }
@@ -1468,7 +1468,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateWebhookEndpointBodyDto"
+                "$ref": "#/components/schemas/UpdateWebhookEndpoint"
               }
             }
           }
@@ -2520,7 +2520,7 @@
         ],
         "additionalProperties": false
       },
-      "CreateSubscriptionRequest": {
+      "CreateSubscription": {
         "type": "object",
         "properties": {
           "priceId": {
@@ -2660,7 +2660,7 @@
         ],
         "additionalProperties": false
       },
-      "CancelSubscriptionRequest": {
+      "CancelSubscription": {
         "type": "object",
         "properties": {
           "cancelAtPeriodEnd": {
@@ -2673,7 +2673,7 @@
           }
         }
       },
-      "UpdateSubscriptionRequest": {
+      "UpdateSubscription": {
         "type": "object",
         "properties": {
           "metadata": {
@@ -2771,7 +2771,7 @@
         ],
         "additionalProperties": false
       },
-      "CreateInvoiceBodyDto": {
+      "CreateInvoice": {
         "type": "object",
         "properties": {
           "subscriptionId": {
@@ -2817,7 +2817,7 @@
         ],
         "additionalProperties": false
       },
-      "UpdateInvoiceBodyDto": {
+      "UpdateInvoice": {
         "type": "object",
         "properties": {
           "status": {
@@ -2879,7 +2879,7 @@
         ],
         "additionalProperties": false
       },
-      "CreateWebhookEndpointBodyDto": {
+      "CreateWebhookEndpoint": {
         "type": "object",
         "properties": {
           "url": {
@@ -3103,7 +3103,7 @@
         ],
         "additionalProperties": false
       },
-      "UpdateWebhookEndpointBodyDto": {
+      "UpdateWebhookEndpoint": {
         "type": "object",
         "properties": {
           "url": {

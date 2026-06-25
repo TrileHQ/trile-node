@@ -16,51 +16,51 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateInvoiceBodyDto
+ * @interface CreateInvoice
  */
-export interface CreateInvoiceBodyDto {
+export interface CreateInvoice {
     /**
      * 
      * @type {string}
-     * @memberof CreateInvoiceBodyDto
+     * @memberof CreateInvoice
      */
     subscriptionId: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateInvoiceBodyDto
+     * @memberof CreateInvoice
      */
     amountPaisa: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateInvoiceBodyDto
+     * @memberof CreateInvoice
      */
     description: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateInvoiceBodyDto
+     * @memberof CreateInvoice
      */
     priceId: string;
     /**
      * 
      * @type {Date}
-     * @memberof CreateInvoiceBodyDto
+     * @memberof CreateInvoice
      */
     periodStart: Date;
     /**
      * 
      * @type {Date}
-     * @memberof CreateInvoiceBodyDto
+     * @memberof CreateInvoice
      */
     periodEnd: Date;
 }
 
 /**
- * Check if a given object implements the CreateInvoiceBodyDto interface.
+ * Check if a given object implements the CreateInvoice interface.
  */
-export function instanceOfCreateInvoiceBodyDto(value: object): value is CreateInvoiceBodyDto {
+export function instanceOfCreateInvoice(value: object): value is CreateInvoice {
     if (!('subscriptionId' in value) || value['subscriptionId'] === undefined) return false;
     if (!('amountPaisa' in value) || value['amountPaisa'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
@@ -70,11 +70,11 @@ export function instanceOfCreateInvoiceBodyDto(value: object): value is CreateIn
     return true;
 }
 
-export function CreateInvoiceBodyDtoFromJSON(json: any): CreateInvoiceBodyDto {
-    return CreateInvoiceBodyDtoFromJSONTyped(json, false);
+export function CreateInvoiceFromJSON(json: any): CreateInvoice {
+    return CreateInvoiceFromJSONTyped(json, false);
 }
 
-export function CreateInvoiceBodyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateInvoiceBodyDto {
+export function CreateInvoiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateInvoice {
     if (json == null) {
         return json;
     }
@@ -89,11 +89,11 @@ export function CreateInvoiceBodyDtoFromJSONTyped(json: any, ignoreDiscriminator
     };
 }
 
-export function CreateInvoiceBodyDtoToJSON(json: any): CreateInvoiceBodyDto {
-    return CreateInvoiceBodyDtoToJSONTyped(json, false);
+export function CreateInvoiceToJSON(json: any): CreateInvoice {
+    return CreateInvoiceToJSONTyped(json, false);
 }
 
-export function CreateInvoiceBodyDtoToJSONTyped(value?: CreateInvoiceBodyDto | null, ignoreDiscriminator: boolean = false): any {
+export function CreateInvoiceToJSONTyped(value?: CreateInvoice | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

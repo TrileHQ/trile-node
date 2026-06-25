@@ -16,35 +16,35 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CancelSubscriptionRequest
+ * @interface CancelSubscription
  */
-export interface CancelSubscriptionRequest {
+export interface CancelSubscription {
     /**
      * 
      * @type {boolean}
-     * @memberof CancelSubscriptionRequest
+     * @memberof CancelSubscription
      */
     cancelAtPeriodEnd?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof CancelSubscriptionRequest
+     * @memberof CancelSubscription
      */
     reason?: string;
 }
 
 /**
- * Check if a given object implements the CancelSubscriptionRequest interface.
+ * Check if a given object implements the CancelSubscription interface.
  */
-export function instanceOfCancelSubscriptionRequest(value: object): value is CancelSubscriptionRequest {
+export function instanceOfCancelSubscription(value: object): value is CancelSubscription {
     return true;
 }
 
-export function CancelSubscriptionRequestFromJSON(json: any): CancelSubscriptionRequest {
-    return CancelSubscriptionRequestFromJSONTyped(json, false);
+export function CancelSubscriptionFromJSON(json: any): CancelSubscription {
+    return CancelSubscriptionFromJSONTyped(json, false);
 }
 
-export function CancelSubscriptionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CancelSubscriptionRequest {
+export function CancelSubscriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): CancelSubscription {
     if (json == null) {
         return json;
     }
@@ -55,11 +55,11 @@ export function CancelSubscriptionRequestFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function CancelSubscriptionRequestToJSON(json: any): CancelSubscriptionRequest {
-    return CancelSubscriptionRequestToJSONTyped(json, false);
+export function CancelSubscriptionToJSON(json: any): CancelSubscription {
+    return CancelSubscriptionToJSONTyped(json, false);
 }
 
-export function CancelSubscriptionRequestToJSONTyped(value?: CancelSubscriptionRequest | null, ignoreDiscriminator: boolean = false): any {
+export function CancelSubscriptionToJSONTyped(value?: CancelSubscription | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

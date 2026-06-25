@@ -16,49 +16,49 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateSubscriptionRequest
+ * @interface CreateSubscription
  */
-export interface CreateSubscriptionRequest {
+export interface CreateSubscription {
     /**
      * 
      * @type {string}
-     * @memberof CreateSubscriptionRequest
+     * @memberof CreateSubscription
      */
     priceId: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateSubscriptionRequest
+     * @memberof CreateSubscription
      */
     customerId: string;
     /**
      * 
      * @type {boolean}
-     * @memberof CreateSubscriptionRequest
+     * @memberof CreateSubscription
      */
     skipTrial?: boolean;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof CreateSubscriptionRequest
+     * @memberof CreateSubscription
      */
     metadata?: { [key: string]: any; };
 }
 
 /**
- * Check if a given object implements the CreateSubscriptionRequest interface.
+ * Check if a given object implements the CreateSubscription interface.
  */
-export function instanceOfCreateSubscriptionRequest(value: object): value is CreateSubscriptionRequest {
+export function instanceOfCreateSubscription(value: object): value is CreateSubscription {
     if (!('priceId' in value) || value['priceId'] === undefined) return false;
     if (!('customerId' in value) || value['customerId'] === undefined) return false;
     return true;
 }
 
-export function CreateSubscriptionRequestFromJSON(json: any): CreateSubscriptionRequest {
-    return CreateSubscriptionRequestFromJSONTyped(json, false);
+export function CreateSubscriptionFromJSON(json: any): CreateSubscription {
+    return CreateSubscriptionFromJSONTyped(json, false);
 }
 
-export function CreateSubscriptionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSubscriptionRequest {
+export function CreateSubscriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSubscription {
     if (json == null) {
         return json;
     }
@@ -71,11 +71,11 @@ export function CreateSubscriptionRequestFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function CreateSubscriptionRequestToJSON(json: any): CreateSubscriptionRequest {
-    return CreateSubscriptionRequestToJSONTyped(json, false);
+export function CreateSubscriptionToJSON(json: any): CreateSubscription {
+    return CreateSubscriptionToJSONTyped(json, false);
 }
 
-export function CreateSubscriptionRequestToJSONTyped(value?: CreateSubscriptionRequest | null, ignoreDiscriminator: boolean = false): any {
+export function CreateSubscriptionToJSONTyped(value?: CreateSubscription | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

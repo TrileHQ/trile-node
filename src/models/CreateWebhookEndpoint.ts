@@ -16,54 +16,54 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface CreateWebhookEndpointBodyDto
+ * @interface CreateWebhookEndpoint
  */
-export interface CreateWebhookEndpointBodyDto {
+export interface CreateWebhookEndpoint {
     /**
      * 
      * @type {string}
-     * @memberof CreateWebhookEndpointBodyDto
+     * @memberof CreateWebhookEndpoint
      */
     url: string;
     /**
      * 
      * @type {string}
-     * @memberof CreateWebhookEndpointBodyDto
+     * @memberof CreateWebhookEndpoint
      */
     secret?: string;
     /**
      * 
      * @type {Array<string>}
-     * @memberof CreateWebhookEndpointBodyDto
+     * @memberof CreateWebhookEndpoint
      */
     enabled_events?: Array<string>;
     /**
      * 
      * @type {boolean}
-     * @memberof CreateWebhookEndpointBodyDto
+     * @memberof CreateWebhookEndpoint
      */
     active?: boolean;
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof CreateWebhookEndpointBodyDto
+     * @memberof CreateWebhookEndpoint
      */
     metadata?: { [key: string]: any; };
 }
 
 /**
- * Check if a given object implements the CreateWebhookEndpointBodyDto interface.
+ * Check if a given object implements the CreateWebhookEndpoint interface.
  */
-export function instanceOfCreateWebhookEndpointBodyDto(value: object): value is CreateWebhookEndpointBodyDto {
+export function instanceOfCreateWebhookEndpoint(value: object): value is CreateWebhookEndpoint {
     if (!('url' in value) || value['url'] === undefined) return false;
     return true;
 }
 
-export function CreateWebhookEndpointBodyDtoFromJSON(json: any): CreateWebhookEndpointBodyDto {
-    return CreateWebhookEndpointBodyDtoFromJSONTyped(json, false);
+export function CreateWebhookEndpointFromJSON(json: any): CreateWebhookEndpoint {
+    return CreateWebhookEndpointFromJSONTyped(json, false);
 }
 
-export function CreateWebhookEndpointBodyDtoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateWebhookEndpointBodyDto {
+export function CreateWebhookEndpointFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateWebhookEndpoint {
     if (json == null) {
         return json;
     }
@@ -77,11 +77,11 @@ export function CreateWebhookEndpointBodyDtoFromJSONTyped(json: any, ignoreDiscr
     };
 }
 
-export function CreateWebhookEndpointBodyDtoToJSON(json: any): CreateWebhookEndpointBodyDto {
-    return CreateWebhookEndpointBodyDtoToJSONTyped(json, false);
+export function CreateWebhookEndpointToJSON(json: any): CreateWebhookEndpoint {
+    return CreateWebhookEndpointToJSONTyped(json, false);
 }
 
-export function CreateWebhookEndpointBodyDtoToJSONTyped(value?: CreateWebhookEndpointBodyDto | null, ignoreDiscriminator: boolean = false): any {
+export function CreateWebhookEndpointToJSONTyped(value?: CreateWebhookEndpoint | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }

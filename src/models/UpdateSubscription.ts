@@ -16,35 +16,35 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface UpdateSubscriptionRequest
+ * @interface UpdateSubscription
  */
-export interface UpdateSubscriptionRequest {
+export interface UpdateSubscription {
     /**
      * 
      * @type {{ [key: string]: any; }}
-     * @memberof UpdateSubscriptionRequest
+     * @memberof UpdateSubscription
      */
     metadata?: { [key: string]: any; };
     /**
      * 
      * @type {boolean}
-     * @memberof UpdateSubscriptionRequest
+     * @memberof UpdateSubscription
      */
     cancelAtPeriodEnd?: boolean;
 }
 
 /**
- * Check if a given object implements the UpdateSubscriptionRequest interface.
+ * Check if a given object implements the UpdateSubscription interface.
  */
-export function instanceOfUpdateSubscriptionRequest(value: object): value is UpdateSubscriptionRequest {
+export function instanceOfUpdateSubscription(value: object): value is UpdateSubscription {
     return true;
 }
 
-export function UpdateSubscriptionRequestFromJSON(json: any): UpdateSubscriptionRequest {
-    return UpdateSubscriptionRequestFromJSONTyped(json, false);
+export function UpdateSubscriptionFromJSON(json: any): UpdateSubscription {
+    return UpdateSubscriptionFromJSONTyped(json, false);
 }
 
-export function UpdateSubscriptionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateSubscriptionRequest {
+export function UpdateSubscriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateSubscription {
     if (json == null) {
         return json;
     }
@@ -55,11 +55,11 @@ export function UpdateSubscriptionRequestFromJSONTyped(json: any, ignoreDiscrimi
     };
 }
 
-export function UpdateSubscriptionRequestToJSON(json: any): UpdateSubscriptionRequest {
-    return UpdateSubscriptionRequestToJSONTyped(json, false);
+export function UpdateSubscriptionToJSON(json: any): UpdateSubscription {
+    return UpdateSubscriptionToJSONTyped(json, false);
 }
 
-export function UpdateSubscriptionRequestToJSONTyped(value?: UpdateSubscriptionRequest | null, ignoreDiscriminator: boolean = false): any {
+export function UpdateSubscriptionToJSONTyped(value?: UpdateSubscription | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
