@@ -1,0 +1,10 @@
+# Files the generator must NOT emit/overwrite — these are hand-maintained.
+package.json
+tsconfig.json
+tsconfig.esm.json
+README.md
+.gitignore
+.npmignore
+git_push.sh
+# We don't ship the generator's markdown docs; the API reference lives in the docs site.
+docs/**

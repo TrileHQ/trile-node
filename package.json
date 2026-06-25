@@ -1,0 +1,32 @@
+{
+  "name": "@trile/sdk",
+  "version": "0.1.0",
+  "description": "Official TypeScript SDK for the Trile API — payments infrastructure for Nepal.",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "sync:spec": "node scripts/sync-spec.mjs",
+    "generate": "openapi-generator-cli generate -c config.yaml && echo '✓ SDK regenerated from spec'",
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist src/apis src/models src/runtime.ts src/index.ts src/.openapi-generator",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.23.4",
+    "typescript": "^5.6.0"
+  }
+}

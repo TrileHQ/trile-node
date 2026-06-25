@@ -1,0 +1,6 @@
+node_modules/
+dist/
+# Local JAR cache used to run the generator offline; CI uses the npm wrapper.
+.openapi-generator-jar/
+.openapi-generator/
+# The generated SDK in src/ IS committed so consumers install without a build step.

@@ -1,0 +1,30 @@
+# OpenAPI Generator config for the Trile TypeScript SDK.
+# Generator docs: https://openapi-generator.tech/docs/generators/typescript-fetch
+#
+# typescript-fetch is the modern, dependency-light TS generator: it targets the
+# native fetch API, so the SDK works in browsers, Node 18+, Deno, Bun, and edge
+# runtimes without pulling in axios.
+generatorName: typescript-fetch
+# Spec is vendored into this repo (openapi/trile.json) so generation is
+# reproducible in CI without reaching the backend or docs repo. Refresh it with
+# `npm run sync:spec`.
+inputSpec: ./openapi/trile.json
+# Output to the repo root; the generator places TS sources under src/ and we keep
+# package.json/tsconfig/README hand-maintained via .openapi-generator-ignore.
+outputDir: .
+additionalProperties:
+  npmName: "@trile/sdk"
+  npmVersion: "0.1.0"
+  # Keep API field names exactly as the spec declares them (snake_case stays snake_case).
+  modelPropertyNaming: original
+  # Bundle each operation's args into a single typed request object.
+  useSingleRequestParameter: true
+  # Emit TS enums + ES6 output for tree-shaking.
+  supportsES6: true
+  enumPropertyNaming: original
+  # Group operations by tag (CustomersApi, SubscriptionsApi, ...).
+  withSeparateModelsAndApi: true
+  apiPackage: "apis"
+  modelPackage: "models"
+  # Prefix nothing; we re-export a clean surface from src/index.ts ourselves.
+  withInterfaces: false
