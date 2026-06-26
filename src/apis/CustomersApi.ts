@@ -15,21 +15,21 @@
 
 import * as runtime from '../runtime';
 import type {
+  ArchiveCustomer200Response,
   CreateCustomer,
-  CustomerArchiveResponseOutput,
-  CustomerPageResponseOutput,
-  CustomerResponseOutput,
+  CreateCustomer201Response,
+  ListCustomers200Response,
   UpdateCustomer,
 } from '../models/index';
 import {
+    ArchiveCustomer200ResponseFromJSON,
+    ArchiveCustomer200ResponseToJSON,
     CreateCustomerFromJSON,
     CreateCustomerToJSON,
-    CustomerArchiveResponseOutputFromJSON,
-    CustomerArchiveResponseOutputToJSON,
-    CustomerPageResponseOutputFromJSON,
-    CustomerPageResponseOutputToJSON,
-    CustomerResponseOutputFromJSON,
-    CustomerResponseOutputToJSON,
+    CreateCustomer201ResponseFromJSON,
+    CreateCustomer201ResponseToJSON,
+    ListCustomers200ResponseFromJSON,
+    ListCustomers200ResponseToJSON,
     UpdateCustomerFromJSON,
     UpdateCustomerToJSON,
 } from '../models/index';
@@ -73,7 +73,7 @@ export class CustomersApi extends runtime.BaseAPI {
     /**
      * Archive a customer (soft-delete: sets archivedAt).
      */
-    async archiveCustomerRaw(requestParameters: ArchiveCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerArchiveResponseOutput>> {
+    async archiveCustomerRaw(requestParameters: ArchiveCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ArchiveCustomer200Response>> {
         if (requestParameters['customerId'] == null) {
             throw new runtime.RequiredError(
                 'customerId',
@@ -104,13 +104,13 @@ export class CustomersApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerArchiveResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ArchiveCustomer200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Archive a customer (soft-delete: sets archivedAt).
      */
-    async archiveCustomer(requestParameters: ArchiveCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerArchiveResponseOutput> {
+    async archiveCustomer(requestParameters: ArchiveCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ArchiveCustomer200Response> {
         const response = await this.archiveCustomerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -118,7 +118,7 @@ export class CustomersApi extends runtime.BaseAPI {
     /**
      * Create a new customer for the merchant business. Idempotency-Key required on retries.
      */
-    async createCustomerRaw(requestParameters: CreateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerResponseOutput>> {
+    async createCustomerRaw(requestParameters: CreateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCustomer201Response>> {
         if (requestParameters['createCustomer'] == null) {
             throw new runtime.RequiredError(
                 'createCustomer',
@@ -151,13 +151,13 @@ export class CustomersApi extends runtime.BaseAPI {
             body: CreateCustomerToJSON(requestParameters['createCustomer']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCustomer201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create a new customer for the merchant business. Idempotency-Key required on retries.
      */
-    async createCustomer(requestParameters: CreateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerResponseOutput> {
+    async createCustomer(requestParameters: CreateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCustomer201Response> {
         const response = await this.createCustomerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -165,7 +165,7 @@ export class CustomersApi extends runtime.BaseAPI {
     /**
      * Get a single customer by ID.
      */
-    async getCustomerRaw(requestParameters: GetCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerResponseOutput>> {
+    async getCustomerRaw(requestParameters: GetCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCustomer201Response>> {
         if (requestParameters['customerId'] == null) {
             throw new runtime.RequiredError(
                 'customerId',
@@ -196,13 +196,13 @@ export class CustomersApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCustomer201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single customer by ID.
      */
-    async getCustomer(requestParameters: GetCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerResponseOutput> {
+    async getCustomer(requestParameters: GetCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCustomer201Response> {
         const response = await this.getCustomerRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -210,7 +210,7 @@ export class CustomersApi extends runtime.BaseAPI {
     /**
      * List customers for the merchant business (cursor pagination, archived excluded).
      */
-    async listCustomersRaw(requestParameters: ListCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerPageResponseOutput>> {
+    async listCustomersRaw(requestParameters: ListCustomersRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListCustomers200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters['search'] != null) {
@@ -257,13 +257,13 @@ export class CustomersApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerPageResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListCustomers200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List customers for the merchant business (cursor pagination, archived excluded).
      */
-    async listCustomers(requestParameters: ListCustomersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerPageResponseOutput> {
+    async listCustomers(requestParameters: ListCustomersRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListCustomers200Response> {
         const response = await this.listCustomersRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -271,7 +271,7 @@ export class CustomersApi extends runtime.BaseAPI {
     /**
      * Update mutable fields on a customer. Idempotency-Key required on retries.
      */
-    async updateCustomerRaw(requestParameters: UpdateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CustomerResponseOutput>> {
+    async updateCustomerRaw(requestParameters: UpdateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCustomer201Response>> {
         if (requestParameters['customerId'] == null) {
             throw new runtime.RequiredError(
                 'customerId',
@@ -312,13 +312,13 @@ export class CustomersApi extends runtime.BaseAPI {
             body: UpdateCustomerToJSON(requestParameters['updateCustomer']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CustomerResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCustomer201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update mutable fields on a customer. Idempotency-Key required on retries.
      */
-    async updateCustomer(requestParameters: UpdateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CustomerResponseOutput> {
+    async updateCustomer(requestParameters: UpdateCustomerRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCustomer201Response> {
         const response = await this.updateCustomerRaw(requestParameters, initOverrides);
         return await response.value();
     }

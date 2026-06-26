@@ -21,7 +21,8 @@ const trile = new Configuration({
 
 const customers = new CustomersApi(trile)
 
-const customer = await customers.createCustomer({
+// Every response is wrapped in { success, data, meta } — your result is in `.data`.
+const { data: customer } = await customers.createCustomer({
   createCustomer: {
     email: 'aarav@example.com.np',
     name: 'Aarav Sharma',
@@ -62,6 +63,17 @@ const trile = new Configuration({
 })
 ```
 
+## Responses
+
+Every successful response is wrapped in a `{ success, data, meta }` envelope. Your
+result is always in `data`; `meta.requestId` is useful when contacting support.
+Destructure it for clean access:
+
+```ts
+const { data, meta } = await customers.getCustomer({ customerId: 'cus_…' })
+console.log(data.email, meta.requestId)
+```
+
 ## Error handling
 
 Any non-2xx response throws a `ResponseError` carrying the raw `Response`, so you
@@ -85,15 +97,15 @@ try {
 
 ## Pagination
 
-List endpoints return `{ items, nextCursor }`. Pass `nextCursor` back as `cursor`
-to fetch the next page; `nextCursor` is `null` on the last page. All filter
-arguments (e.g. `search`, `status`) are optional — pass only what you need.
+List endpoints return `{ items, nextCursor }` (inside `data`). Pass `nextCursor`
+back as `cursor` to fetch the next page; `nextCursor` is `null` on the last page.
+All filter arguments (e.g. `search`, `status`) are optional — pass only what you need.
 
 ```ts
 let cursor: string | undefined
 
 do {
-  const page = await customers.listCustomers({ limit: '50', cursor })
+  const { data: page } = await customers.listCustomers({ limit: '50', cursor })
   for (const customer of page.items) {
     console.log(customer.id, customer.email)
   }

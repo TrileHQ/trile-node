@@ -14,7 +14,7 @@ inputSpec: ./openapi/trile.json
 outputDir: .
 additionalProperties:
   npmName: "@trilehq/sdk"
-  npmVersion: "0.1.0"
+  npmVersion: "0.2.0"
   # Keep API field names exactly as the spec declares them (snake_case stays snake_case).
   modelPropertyNaming: original
   # Bundle each operation's args into a single typed request object.

@@ -16,13 +16,13 @@
 import * as runtime from '../runtime';
 import type {
   CreateCheckoutSession,
-  CreateSessionResponseOutput,
+  CreateCheckoutSession201Response,
 } from '../models/index';
 import {
     CreateCheckoutSessionFromJSON,
     CreateCheckoutSessionToJSON,
-    CreateSessionResponseOutputFromJSON,
-    CreateSessionResponseOutputToJSON,
+    CreateCheckoutSession201ResponseFromJSON,
+    CreateCheckoutSession201ResponseToJSON,
 } from '../models/index';
 
 export interface CreateCheckoutSessionRequest {
@@ -38,7 +38,7 @@ export class CheckoutApi extends runtime.BaseAPI {
     /**
      * Create a checkout session for a price. Returns a cs_ id + a one-time public URL carrying the raw token. Idempotency-Key required on retries.
      */
-    async createCheckoutSessionRaw(requestParameters: CreateCheckoutSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSessionResponseOutput>> {
+    async createCheckoutSessionRaw(requestParameters: CreateCheckoutSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCheckoutSession201Response>> {
         if (requestParameters['createCheckoutSession'] == null) {
             throw new runtime.RequiredError(
                 'createCheckoutSession',
@@ -71,13 +71,13 @@ export class CheckoutApi extends runtime.BaseAPI {
             body: CreateCheckoutSessionToJSON(requestParameters['createCheckoutSession']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSessionResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCheckoutSession201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create a checkout session for a price. Returns a cs_ id + a one-time public URL carrying the raw token. Idempotency-Key required on retries.
      */
-    async createCheckoutSession(requestParameters: CreateCheckoutSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSessionResponseOutput> {
+    async createCheckoutSession(requestParameters: CreateCheckoutSessionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCheckoutSession201Response> {
         const response = await this.createCheckoutSessionRaw(requestParameters, initOverrides);
         return await response.value();
     }

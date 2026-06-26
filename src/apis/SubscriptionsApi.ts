@@ -17,8 +17,8 @@ import * as runtime from '../runtime';
 import type {
   CancelSubscription,
   CreateSubscription,
-  SubscriptionPageResponseOutput,
-  SubscriptionResponseOutput,
+  CreateSubscription201Response,
+  ListSubscriptions200Response,
   UpdateSubscription,
 } from '../models/index';
 import {
@@ -26,10 +26,10 @@ import {
     CancelSubscriptionToJSON,
     CreateSubscriptionFromJSON,
     CreateSubscriptionToJSON,
-    SubscriptionPageResponseOutputFromJSON,
-    SubscriptionPageResponseOutputToJSON,
-    SubscriptionResponseOutputFromJSON,
-    SubscriptionResponseOutputToJSON,
+    CreateSubscription201ResponseFromJSON,
+    CreateSubscription201ResponseToJSON,
+    ListSubscriptions200ResponseFromJSON,
+    ListSubscriptions200ResponseToJSON,
     UpdateSubscriptionFromJSON,
     UpdateSubscriptionToJSON,
 } from '../models/index';
@@ -71,7 +71,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Cancel a subscription. Default (cancelAtPeriodEnd=false) is immediate. Set cancelAtPeriodEnd=true to cancel at period end.
      */
-    async cancelSubscriptionRaw(requestParameters: CancelSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
+    async cancelSubscriptionRaw(requestParameters: CancelSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscription201Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -112,13 +112,13 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             body: CancelSubscriptionToJSON(requestParameters['cancelSubscription']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscription201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Cancel a subscription. Default (cancelAtPeriodEnd=false) is immediate. Set cancelAtPeriodEnd=true to cancel at period end.
      */
-    async cancelSubscription(requestParameters: CancelSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
+    async cancelSubscription(requestParameters: CancelSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscription201Response> {
         const response = await this.cancelSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -126,7 +126,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Create a subscription for a customer. Idempotency-Key required on retries. Charge is immediate unless price has a trial and skipTrial=false.
      */
-    async createSubscriptionRaw(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
+    async createSubscriptionRaw(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscription201Response>> {
         if (requestParameters['createSubscription'] == null) {
             throw new runtime.RequiredError(
                 'createSubscription',
@@ -159,13 +159,13 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             body: CreateSubscriptionToJSON(requestParameters['createSubscription']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscription201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create a subscription for a customer. Idempotency-Key required on retries. Charge is immediate unless price has a trial and skipTrial=false.
      */
-    async createSubscription(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
+    async createSubscription(requestParameters: CreateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscription201Response> {
         const response = await this.createSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -173,7 +173,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Get a single subscription by ID.
      */
-    async getSubscriptionRaw(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
+    async getSubscriptionRaw(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscription201Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -204,13 +204,13 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscription201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single subscription by ID.
      */
-    async getSubscription(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
+    async getSubscription(requestParameters: GetSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscription201Response> {
         const response = await this.getSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -218,7 +218,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * List subscriptions for the merchant business. Cursor pagination. Optional ?status= filter (trialing|active|past_due|unpaid|cancelled).
      */
-    async listSubscriptionsRaw(requestParameters: ListSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionPageResponseOutput>> {
+    async listSubscriptionsRaw(requestParameters: ListSubscriptionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListSubscriptions200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters['status'] != null) {
@@ -253,13 +253,13 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionPageResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListSubscriptions200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List subscriptions for the merchant business. Cursor pagination. Optional ?status= filter (trialing|active|past_due|unpaid|cancelled).
      */
-    async listSubscriptions(requestParameters: ListSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionPageResponseOutput> {
+    async listSubscriptions(requestParameters: ListSubscriptionsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListSubscriptions200Response> {
         const response = await this.listSubscriptionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -267,7 +267,7 @@ export class SubscriptionsApi extends runtime.BaseAPI {
     /**
      * Update mutable fields on a subscription: metadata (partial merge) and cancelAtPeriodEnd (one-way, can only be set to true).
      */
-    async updateSubscriptionRaw(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SubscriptionResponseOutput>> {
+    async updateSubscriptionRaw(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscription201Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -308,13 +308,13 @@ export class SubscriptionsApi extends runtime.BaseAPI {
             body: UpdateSubscriptionToJSON(requestParameters['updateSubscription']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SubscriptionResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscription201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update mutable fields on a subscription: metadata (partial merge) and cancelAtPeriodEnd (one-way, can only be set to true).
      */
-    async updateSubscription(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SubscriptionResponseOutput> {
+    async updateSubscription(requestParameters: UpdateSubscriptionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateSubscription201Response> {
         const response = await this.updateSubscriptionRaw(requestParameters, initOverrides);
         return await response.value();
     }

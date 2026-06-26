@@ -15,14 +15,14 @@
 
 import * as runtime from '../runtime';
 import type {
-  EventPageResponseOutput,
-  EventResponseOutput,
+  GetEvent200Response,
+  ListEvents200Response,
 } from '../models/index';
 import {
-    EventPageResponseOutputFromJSON,
-    EventPageResponseOutputToJSON,
-    EventResponseOutputFromJSON,
-    EventResponseOutputToJSON,
+    GetEvent200ResponseFromJSON,
+    GetEvent200ResponseToJSON,
+    ListEvents200ResponseFromJSON,
+    ListEvents200ResponseToJSON,
 } from '../models/index';
 
 export interface GetEventRequest {
@@ -50,7 +50,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * Get a single domain event by ID.
      */
-    async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventResponseOutput>> {
+    async getEventRaw(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetEvent200Response>> {
         if (requestParameters['eventId'] == null) {
             throw new runtime.RequiredError(
                 'eventId',
@@ -81,13 +81,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => EventResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetEvent200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single domain event by ID.
      */
-    async getEvent(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventResponseOutput> {
+    async getEvent(requestParameters: GetEventRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetEvent200Response> {
         const response = await this.getEventRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -95,7 +95,7 @@ export class EventsApi extends runtime.BaseAPI {
     /**
      * List domain events for the merchant business (keyset cursor pagination).
      */
-    async listEventsRaw(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<EventPageResponseOutput>> {
+    async listEventsRaw(requestParameters: ListEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListEvents200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters['type'] != null) {
@@ -150,13 +150,13 @@ export class EventsApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => EventPageResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListEvents200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List domain events for the merchant business (keyset cursor pagination).
      */
-    async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<EventPageResponseOutput> {
+    async listEvents(requestParameters: ListEventsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListEvents200Response> {
         const response = await this.listEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }

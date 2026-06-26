@@ -16,34 +16,34 @@
 import * as runtime from '../runtime';
 import type {
   CreateWebhookEndpoint,
-  ReplayWebhookResponseOutput,
-  RotateWebhookSecretResponseOutput,
-  TestWebhookResponseOutput,
+  CreateWebhookEndpoint201Response,
+  GetWebhookEndpoint200Response,
+  ListWebhookDeliveries200Response,
+  ListWebhookEndpoints200Response,
+  ReplayWebhookDeliveries200Response,
+  RotateWebhookSecret200Response,
+  SendTestWebhook200Response,
   UpdateWebhookEndpoint,
-  WebhookDeliveryResponseDtoOutput,
-  WebhookEndpointPageResponseOutput,
-  WebhookEndpointResponseOutput,
-  WebhookEndpointWithSecretResponseOutput,
 } from '../models/index';
 import {
     CreateWebhookEndpointFromJSON,
     CreateWebhookEndpointToJSON,
-    ReplayWebhookResponseOutputFromJSON,
-    ReplayWebhookResponseOutputToJSON,
-    RotateWebhookSecretResponseOutputFromJSON,
-    RotateWebhookSecretResponseOutputToJSON,
-    TestWebhookResponseOutputFromJSON,
-    TestWebhookResponseOutputToJSON,
+    CreateWebhookEndpoint201ResponseFromJSON,
+    CreateWebhookEndpoint201ResponseToJSON,
+    GetWebhookEndpoint200ResponseFromJSON,
+    GetWebhookEndpoint200ResponseToJSON,
+    ListWebhookDeliveries200ResponseFromJSON,
+    ListWebhookDeliveries200ResponseToJSON,
+    ListWebhookEndpoints200ResponseFromJSON,
+    ListWebhookEndpoints200ResponseToJSON,
+    ReplayWebhookDeliveries200ResponseFromJSON,
+    ReplayWebhookDeliveries200ResponseToJSON,
+    RotateWebhookSecret200ResponseFromJSON,
+    RotateWebhookSecret200ResponseToJSON,
+    SendTestWebhook200ResponseFromJSON,
+    SendTestWebhook200ResponseToJSON,
     UpdateWebhookEndpointFromJSON,
     UpdateWebhookEndpointToJSON,
-    WebhookDeliveryResponseDtoOutputFromJSON,
-    WebhookDeliveryResponseDtoOutputToJSON,
-    WebhookEndpointPageResponseOutputFromJSON,
-    WebhookEndpointPageResponseOutputToJSON,
-    WebhookEndpointResponseOutputFromJSON,
-    WebhookEndpointResponseOutputToJSON,
-    WebhookEndpointWithSecretResponseOutputFromJSON,
-    WebhookEndpointWithSecretResponseOutputToJSON,
 } from '../models/index';
 
 export interface CreateWebhookEndpointRequest {
@@ -100,7 +100,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Register a new webhook endpoint for the merchant business. Returns the generated signing secret — shown only once and must be stored securely.
      */
-    async createWebhookEndpointRaw(requestParameters: CreateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointWithSecretResponseOutput>> {
+    async createWebhookEndpointRaw(requestParameters: CreateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateWebhookEndpoint201Response>> {
         if (requestParameters['createWebhookEndpoint'] == null) {
             throw new runtime.RequiredError(
                 'createWebhookEndpoint',
@@ -133,13 +133,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             body: CreateWebhookEndpointToJSON(requestParameters['createWebhookEndpoint']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointWithSecretResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateWebhookEndpoint201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Register a new webhook endpoint for the merchant business. Returns the generated signing secret — shown only once and must be stored securely.
      */
-    async createWebhookEndpoint(requestParameters: CreateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointWithSecretResponseOutput> {
+    async createWebhookEndpoint(requestParameters: CreateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateWebhookEndpoint201Response> {
         const response = await this.createWebhookEndpointRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -191,7 +191,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Get a single webhook endpoint by ID. Secret is excluded.
      */
-    async getWebhookEndpointRaw(requestParameters: GetWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointResponseOutput>> {
+    async getWebhookEndpointRaw(requestParameters: GetWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWebhookEndpoint200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -222,13 +222,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetWebhookEndpoint200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single webhook endpoint by ID. Secret is excluded.
      */
-    async getWebhookEndpoint(requestParameters: GetWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointResponseOutput> {
+    async getWebhookEndpoint(requestParameters: GetWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWebhookEndpoint200Response> {
         const response = await this.getWebhookEndpointRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -236,7 +236,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * List the most-recent deliveries for a webhook endpoint, each with its per-attempt history and a derived status. Read-only projection of the outbox + delivery-attempts tables. Default limit 30. Returns a BARE ARRAY (NOT a { items, nextCursor } cursor page) — the FE deliveries timeline consumes ReadonlyArray<WebhookDelivery>; deliberate divergence from the list-envelope convention.
      */
-    async listWebhookDeliveriesRaw(requestParameters: ListWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<WebhookDeliveryResponseDtoOutput>>> {
+    async listWebhookDeliveriesRaw(requestParameters: ListWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListWebhookDeliveries200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -271,13 +271,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(WebhookDeliveryResponseDtoOutputFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListWebhookDeliveries200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List the most-recent deliveries for a webhook endpoint, each with its per-attempt history and a derived status. Read-only projection of the outbox + delivery-attempts tables. Default limit 30. Returns a BARE ARRAY (NOT a { items, nextCursor } cursor page) — the FE deliveries timeline consumes ReadonlyArray<WebhookDelivery>; deliberate divergence from the list-envelope convention.
      */
-    async listWebhookDeliveries(requestParameters: ListWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<WebhookDeliveryResponseDtoOutput>> {
+    async listWebhookDeliveries(requestParameters: ListWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListWebhookDeliveries200Response> {
         const response = await this.listWebhookDeliveriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -285,7 +285,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * List webhook endpoints for the merchant business. Cursor pagination. Secret is never returned in list responses.
      */
-    async listWebhookEndpointsRaw(requestParameters: ListWebhookEndpointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointPageResponseOutput>> {
+    async listWebhookEndpointsRaw(requestParameters: ListWebhookEndpointsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListWebhookEndpoints200Response>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -308,13 +308,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointPageResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListWebhookEndpoints200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List webhook endpoints for the merchant business. Cursor pagination. Secret is never returned in list responses.
      */
-    async listWebhookEndpoints(requestParameters: ListWebhookEndpointsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointPageResponseOutput> {
+    async listWebhookEndpoints(requestParameters: ListWebhookEndpointsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListWebhookEndpoints200Response> {
         const response = await this.listWebhookEndpointsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -322,7 +322,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Replay all failed deliveries for this endpoint. Resets status from \"failed\" to \"pending\" and immediately retries via BullMQ. Only endpoints owned by the merchant business are affected.
      */
-    async replayWebhookDeliveriesRaw(requestParameters: ReplayWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReplayWebhookResponseOutput>> {
+    async replayWebhookDeliveriesRaw(requestParameters: ReplayWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReplayWebhookDeliveries200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -353,13 +353,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ReplayWebhookResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReplayWebhookDeliveries200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Replay all failed deliveries for this endpoint. Resets status from \"failed\" to \"pending\" and immediately retries via BullMQ. Only endpoints owned by the merchant business are affected.
      */
-    async replayWebhookDeliveries(requestParameters: ReplayWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReplayWebhookResponseOutput> {
+    async replayWebhookDeliveries(requestParameters: ReplayWebhookDeliveriesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReplayWebhookDeliveries200Response> {
         const response = await this.replayWebhookDeliveriesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -367,7 +367,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Rotate the signing secret for an endpoint. Invalidates the old secret immediately and returns the new secret once. Update your webhook receiver with the new secret promptly.
      */
-    async rotateWebhookSecretRaw(requestParameters: RotateWebhookSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateWebhookSecretResponseOutput>> {
+    async rotateWebhookSecretRaw(requestParameters: RotateWebhookSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RotateWebhookSecret200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -398,13 +398,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => RotateWebhookSecretResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => RotateWebhookSecret200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Rotate the signing secret for an endpoint. Invalidates the old secret immediately and returns the new secret once. Update your webhook receiver with the new secret promptly.
      */
-    async rotateWebhookSecret(requestParameters: RotateWebhookSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateWebhookSecretResponseOutput> {
+    async rotateWebhookSecret(requestParameters: RotateWebhookSecretRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RotateWebhookSecret200Response> {
         const response = await this.rotateWebhookSecretRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -412,7 +412,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Send a test event to the endpoint immediately. The event is enqueued for immediate delivery via BullMQ — no scheduling delay. Use this to verify the endpoint URL, signing secret, and handler is correct.
      */
-    async sendTestWebhookRaw(requestParameters: SendTestWebhookRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TestWebhookResponseOutput>> {
+    async sendTestWebhookRaw(requestParameters: SendTestWebhookRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SendTestWebhook200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -443,13 +443,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => TestWebhookResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SendTestWebhook200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Send a test event to the endpoint immediately. The event is enqueued for immediate delivery via BullMQ — no scheduling delay. Use this to verify the endpoint URL, signing secret, and handler is correct.
      */
-    async sendTestWebhook(requestParameters: SendTestWebhookRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<TestWebhookResponseOutput> {
+    async sendTestWebhook(requestParameters: SendTestWebhookRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SendTestWebhook200Response> {
         const response = await this.sendTestWebhookRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -457,7 +457,7 @@ export class WebhooksApi extends runtime.BaseAPI {
     /**
      * Update mutable fields on a webhook endpoint: url, enabled_events, active, metadata.
      */
-    async updateWebhookEndpointRaw(requestParameters: UpdateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WebhookEndpointResponseOutput>> {
+    async updateWebhookEndpointRaw(requestParameters: UpdateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWebhookEndpoint200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -498,13 +498,13 @@ export class WebhooksApi extends runtime.BaseAPI {
             body: UpdateWebhookEndpointToJSON(requestParameters['updateWebhookEndpoint']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => WebhookEndpointResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetWebhookEndpoint200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update mutable fields on a webhook endpoint: url, enabled_events, active, metadata.
      */
-    async updateWebhookEndpoint(requestParameters: UpdateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<WebhookEndpointResponseOutput> {
+    async updateWebhookEndpoint(requestParameters: UpdateWebhookEndpointRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWebhookEndpoint200Response> {
         const response = await this.updateWebhookEndpointRaw(requestParameters, initOverrides);
         return await response.value();
     }

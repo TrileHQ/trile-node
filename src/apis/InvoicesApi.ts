@@ -16,26 +16,26 @@
 import * as runtime from '../runtime';
 import type {
   CreateInvoice,
-  InvoiceEventResponseDtoOutput,
-  InvoiceMutationResponseOutput,
-  InvoicePageResponseOutput,
-  InvoiceResponseOutput,
-  SendInvoiceResponseOutput,
+  CreateInvoice201Response,
+  GetInvoice200Response,
+  ListInvoiceEvents200Response,
+  ListInvoices200Response,
+  SendInvoice200Response,
   UpdateInvoice,
 } from '../models/index';
 import {
     CreateInvoiceFromJSON,
     CreateInvoiceToJSON,
-    InvoiceEventResponseDtoOutputFromJSON,
-    InvoiceEventResponseDtoOutputToJSON,
-    InvoiceMutationResponseOutputFromJSON,
-    InvoiceMutationResponseOutputToJSON,
-    InvoicePageResponseOutputFromJSON,
-    InvoicePageResponseOutputToJSON,
-    InvoiceResponseOutputFromJSON,
-    InvoiceResponseOutputToJSON,
-    SendInvoiceResponseOutputFromJSON,
-    SendInvoiceResponseOutputToJSON,
+    CreateInvoice201ResponseFromJSON,
+    CreateInvoice201ResponseToJSON,
+    GetInvoice200ResponseFromJSON,
+    GetInvoice200ResponseToJSON,
+    ListInvoiceEvents200ResponseFromJSON,
+    ListInvoiceEvents200ResponseToJSON,
+    ListInvoices200ResponseFromJSON,
+    ListInvoices200ResponseToJSON,
+    SendInvoice200ResponseFromJSON,
+    SendInvoice200ResponseToJSON,
     UpdateInvoiceFromJSON,
     UpdateInvoiceToJSON,
 } from '../models/index';
@@ -81,7 +81,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * Create a subscription-scoped invoice in draft status. Idempotency-Key required on retries.
      */
-    async createInvoiceRaw(requestParameters: CreateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InvoiceMutationResponseOutput>> {
+    async createInvoiceRaw(requestParameters: CreateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateInvoice201Response>> {
         if (requestParameters['createInvoice'] == null) {
             throw new runtime.RequiredError(
                 'createInvoice',
@@ -114,13 +114,13 @@ export class InvoicesApi extends runtime.BaseAPI {
             body: CreateInvoiceToJSON(requestParameters['createInvoice']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceMutationResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateInvoice201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create a subscription-scoped invoice in draft status. Idempotency-Key required on retries.
      */
-    async createInvoice(requestParameters: CreateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InvoiceMutationResponseOutput> {
+    async createInvoice(requestParameters: CreateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateInvoice201Response> {
         const response = await this.createInvoiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -128,7 +128,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * Get a single invoice by ID.
      */
-    async getInvoiceRaw(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InvoiceResponseOutput>> {
+    async getInvoiceRaw(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetInvoice200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -159,13 +159,13 @@ export class InvoicesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetInvoice200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single invoice by ID.
      */
-    async getInvoice(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InvoiceResponseOutput> {
+    async getInvoice(requestParameters: GetInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetInvoice200Response> {
         const response = await this.getInvoiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -173,7 +173,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * List the invoice event timeline (bare array, ascending). FE-vocabulary invoice.* events only.
      */
-    async listInvoiceEventsRaw(requestParameters: ListInvoiceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<InvoiceEventResponseDtoOutput>>> {
+    async listInvoiceEventsRaw(requestParameters: ListInvoiceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListInvoiceEvents200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -204,13 +204,13 @@ export class InvoicesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(InvoiceEventResponseDtoOutputFromJSON));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListInvoiceEvents200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List the invoice event timeline (bare array, ascending). FE-vocabulary invoice.* events only.
      */
-    async listInvoiceEvents(requestParameters: ListInvoiceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<InvoiceEventResponseDtoOutput>> {
+    async listInvoiceEvents(requestParameters: ListInvoiceEventsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListInvoiceEvents200Response> {
         const response = await this.listInvoiceEventsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -218,7 +218,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * List invoices for the merchant business. Cursor pagination. Optional ?status= filter (open|paid|void|uncollectible).
      */
-    async listInvoicesRaw(requestParameters: ListInvoicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InvoicePageResponseOutput>> {
+    async listInvoicesRaw(requestParameters: ListInvoicesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListInvoices200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters['status'] != null) {
@@ -253,13 +253,13 @@ export class InvoicesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InvoicePageResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListInvoices200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List invoices for the merchant business. Cursor pagination. Optional ?status= filter (open|paid|void|uncollectible).
      */
-    async listInvoices(requestParameters: ListInvoicesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InvoicePageResponseOutput> {
+    async listInvoices(requestParameters: ListInvoicesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListInvoices200Response> {
         const response = await this.listInvoicesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -267,7 +267,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * Finalize a draft invoice (draft→open). Returns the persisted invoice and the resolved customer email (sent_to_email) when reachable.
      */
-    async sendInvoiceRaw(requestParameters: SendInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SendInvoiceResponseOutput>> {
+    async sendInvoiceRaw(requestParameters: SendInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SendInvoice200Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -298,13 +298,13 @@ export class InvoicesApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => SendInvoiceResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => SendInvoice200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Finalize a draft invoice (draft→open). Returns the persisted invoice and the resolved customer email (sent_to_email) when reachable.
      */
-    async sendInvoice(requestParameters: SendInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SendInvoiceResponseOutput> {
+    async sendInvoice(requestParameters: SendInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<SendInvoice200Response> {
         const response = await this.sendInvoiceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -312,7 +312,7 @@ export class InvoicesApi extends runtime.BaseAPI {
     /**
      * Update an invoice status. body { status: \"void\" } voids an open invoice; body { status: \"paid\" } marks an open invoice paid. Non-open is rejected 4xx.
      */
-    async updateInvoiceRaw(requestParameters: UpdateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<InvoiceMutationResponseOutput>> {
+    async updateInvoiceRaw(requestParameters: UpdateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateInvoice201Response>> {
         if (requestParameters['id'] == null) {
             throw new runtime.RequiredError(
                 'id',
@@ -353,13 +353,13 @@ export class InvoicesApi extends runtime.BaseAPI {
             body: UpdateInvoiceToJSON(requestParameters['updateInvoice']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => InvoiceMutationResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateInvoice201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update an invoice status. body { status: \"void\" } voids an open invoice; body { status: \"paid\" } marks an open invoice paid. Non-open is rejected 4xx.
      */
-    async updateInvoice(requestParameters: UpdateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<InvoiceMutationResponseOutput> {
+    async updateInvoice(requestParameters: UpdateInvoiceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateInvoice201Response> {
         const response = await this.updateInvoiceRaw(requestParameters, initOverrides);
         return await response.value();
     }

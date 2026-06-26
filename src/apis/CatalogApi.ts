@@ -15,34 +15,34 @@
 
 import * as runtime from '../runtime';
 import type {
+  ArchivePrice200Response,
+  ArchiveProduct200Response,
   CreatePrice,
+  CreatePrice201Response,
   CreateProduct,
-  PriceArchiveResponseOutput,
-  PricePageResponseOutput,
-  PriceResponseOutput,
-  ProductArchiveResponseOutput,
-  ProductPageResponseOutput,
-  ProductResponseOutput,
+  CreateProduct201Response,
+  ListPrices200Response,
+  ListProducts200Response,
   UpdatePrice,
   UpdateProduct,
 } from '../models/index';
 import {
+    ArchivePrice200ResponseFromJSON,
+    ArchivePrice200ResponseToJSON,
+    ArchiveProduct200ResponseFromJSON,
+    ArchiveProduct200ResponseToJSON,
     CreatePriceFromJSON,
     CreatePriceToJSON,
+    CreatePrice201ResponseFromJSON,
+    CreatePrice201ResponseToJSON,
     CreateProductFromJSON,
     CreateProductToJSON,
-    PriceArchiveResponseOutputFromJSON,
-    PriceArchiveResponseOutputToJSON,
-    PricePageResponseOutputFromJSON,
-    PricePageResponseOutputToJSON,
-    PriceResponseOutputFromJSON,
-    PriceResponseOutputToJSON,
-    ProductArchiveResponseOutputFromJSON,
-    ProductArchiveResponseOutputToJSON,
-    ProductPageResponseOutputFromJSON,
-    ProductPageResponseOutputToJSON,
-    ProductResponseOutputFromJSON,
-    ProductResponseOutputToJSON,
+    CreateProduct201ResponseFromJSON,
+    CreateProduct201ResponseToJSON,
+    ListPrices200ResponseFromJSON,
+    ListPrices200ResponseToJSON,
+    ListProducts200ResponseFromJSON,
+    ListProducts200ResponseToJSON,
     UpdatePriceFromJSON,
     UpdatePriceToJSON,
     UpdateProductFromJSON,
@@ -120,7 +120,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Archive a price (soft-delete: sets active=false).
      */
-    async archivePriceRaw(requestParameters: ArchivePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceArchiveResponseOutput>> {
+    async archivePriceRaw(requestParameters: ArchivePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ArchivePrice200Response>> {
         if (requestParameters['priceId'] == null) {
             throw new runtime.RequiredError(
                 'priceId',
@@ -151,13 +151,13 @@ export class CatalogApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PriceArchiveResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ArchivePrice200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Archive a price (soft-delete: sets active=false).
      */
-    async archivePrice(requestParameters: ArchivePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceArchiveResponseOutput> {
+    async archivePrice(requestParameters: ArchivePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ArchivePrice200Response> {
         const response = await this.archivePriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -165,7 +165,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Archive a product (soft-delete: sets active=false, cascades to prices).
      */
-    async archiveProductRaw(requestParameters: ArchiveProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductArchiveResponseOutput>> {
+    async archiveProductRaw(requestParameters: ArchiveProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ArchiveProduct200Response>> {
         if (requestParameters['productId'] == null) {
             throw new runtime.RequiredError(
                 'productId',
@@ -196,13 +196,13 @@ export class CatalogApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ProductArchiveResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ArchiveProduct200ResponseFromJSON(jsonValue));
     }
 
     /**
      * Archive a product (soft-delete: sets active=false, cascades to prices).
      */
-    async archiveProduct(requestParameters: ArchiveProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductArchiveResponseOutput> {
+    async archiveProduct(requestParameters: ArchiveProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ArchiveProduct200Response> {
         const response = await this.archiveProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -210,7 +210,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Create a new price for a product. Product must be active. Idempotency-Key required on retries.
      */
-    async createPriceRaw(requestParameters: CreatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceResponseOutput>> {
+    async createPriceRaw(requestParameters: CreatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePrice201Response>> {
         if (requestParameters['createPrice'] == null) {
             throw new runtime.RequiredError(
                 'createPrice',
@@ -243,13 +243,13 @@ export class CatalogApi extends runtime.BaseAPI {
             body: CreatePriceToJSON(requestParameters['createPrice']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PriceResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePrice201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create a new price for a product. Product must be active. Idempotency-Key required on retries.
      */
-    async createPrice(requestParameters: CreatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceResponseOutput> {
+    async createPrice(requestParameters: CreatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePrice201Response> {
         const response = await this.createPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -257,7 +257,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Create a new product for the merchant business. Idempotency-Key required on retries.
      */
-    async createProductRaw(requestParameters: CreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductResponseOutput>> {
+    async createProductRaw(requestParameters: CreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateProduct201Response>> {
         if (requestParameters['createProduct'] == null) {
             throw new runtime.RequiredError(
                 'createProduct',
@@ -290,13 +290,13 @@ export class CatalogApi extends runtime.BaseAPI {
             body: CreateProductToJSON(requestParameters['createProduct']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ProductResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateProduct201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Create a new product for the merchant business. Idempotency-Key required on retries.
      */
-    async createProduct(requestParameters: CreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductResponseOutput> {
+    async createProduct(requestParameters: CreateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateProduct201Response> {
         const response = await this.createProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -304,7 +304,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Get a single price by ID.
      */
-    async getPriceRaw(requestParameters: GetPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceResponseOutput>> {
+    async getPriceRaw(requestParameters: GetPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePrice201Response>> {
         if (requestParameters['priceId'] == null) {
             throw new runtime.RequiredError(
                 'priceId',
@@ -335,13 +335,13 @@ export class CatalogApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PriceResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePrice201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single price by ID.
      */
-    async getPrice(requestParameters: GetPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceResponseOutput> {
+    async getPrice(requestParameters: GetPriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePrice201Response> {
         const response = await this.getPriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -349,7 +349,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Get a single product by ID.
      */
-    async getProductRaw(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductResponseOutput>> {
+    async getProductRaw(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateProduct201Response>> {
         if (requestParameters['productId'] == null) {
             throw new runtime.RequiredError(
                 'productId',
@@ -380,13 +380,13 @@ export class CatalogApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ProductResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateProduct201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Get a single product by ID.
      */
-    async getProduct(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductResponseOutput> {
+    async getProduct(requestParameters: GetProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateProduct201Response> {
         const response = await this.getProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -394,7 +394,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * List prices for the merchant business (cursor pagination, optional ?productId= filter).
      */
-    async listPricesRaw(requestParameters: ListPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PricePageResponseOutput>> {
+    async listPricesRaw(requestParameters: ListPricesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListPrices200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters['productId'] != null) {
@@ -433,13 +433,13 @@ export class CatalogApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PricePageResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListPrices200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List prices for the merchant business (cursor pagination, optional ?productId= filter).
      */
-    async listPrices(requestParameters: ListPricesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PricePageResponseOutput> {
+    async listPrices(requestParameters: ListPricesRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListPrices200Response> {
         const response = await this.listPricesRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -447,7 +447,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * List products for the merchant business (cursor pagination, active=true default).
      */
-    async listProductsRaw(requestParameters: ListProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductPageResponseOutput>> {
+    async listProductsRaw(requestParameters: ListProductsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListProducts200Response>> {
         const queryParameters: any = {};
 
         if (requestParameters['active'] != null) {
@@ -482,13 +482,13 @@ export class CatalogApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ProductPageResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListProducts200ResponseFromJSON(jsonValue));
     }
 
     /**
      * List products for the merchant business (cursor pagination, active=true default).
      */
-    async listProducts(requestParameters: ListProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductPageResponseOutput> {
+    async listProducts(requestParameters: ListProductsRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListProducts200Response> {
         const response = await this.listProductsRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -496,7 +496,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Update mutable fields on a price. Idempotency-Key required on retries.
      */
-    async updatePriceRaw(requestParameters: UpdatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PriceResponseOutput>> {
+    async updatePriceRaw(requestParameters: UpdatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreatePrice201Response>> {
         if (requestParameters['priceId'] == null) {
             throw new runtime.RequiredError(
                 'priceId',
@@ -537,13 +537,13 @@ export class CatalogApi extends runtime.BaseAPI {
             body: UpdatePriceToJSON(requestParameters['updatePrice']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PriceResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreatePrice201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update mutable fields on a price. Idempotency-Key required on retries.
      */
-    async updatePrice(requestParameters: UpdatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<PriceResponseOutput> {
+    async updatePrice(requestParameters: UpdatePriceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreatePrice201Response> {
         const response = await this.updatePriceRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -551,7 +551,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Update mutable fields on a product. Idempotency-Key required on retries.
      */
-    async updateProductRaw(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductResponseOutput>> {
+    async updateProductRaw(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateProduct201Response>> {
         if (requestParameters['productId'] == null) {
             throw new runtime.RequiredError(
                 'productId',
@@ -592,13 +592,13 @@ export class CatalogApi extends runtime.BaseAPI {
             body: UpdateProductToJSON(requestParameters['updateProduct']),
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ProductResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateProduct201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Update mutable fields on a product. Idempotency-Key required on retries.
      */
-    async updateProduct(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductResponseOutput> {
+    async updateProduct(requestParameters: UpdateProductRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateProduct201Response> {
         const response = await this.updateProductRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -606,7 +606,7 @@ export class CatalogApi extends runtime.BaseAPI {
     /**
      * Upload a product image (multipart \"file\": SVG/PNG/JPEG, max 2 MB). Stores in object storage, sets imageUrl, emits a product.updated audit row.
      */
-    async uploadProductImageRaw(requestParameters: UploadProductImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ProductResponseOutput>> {
+    async uploadProductImageRaw(requestParameters: UploadProductImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateProduct201Response>> {
         if (requestParameters['productId'] == null) {
             throw new runtime.RequiredError(
                 'productId',
@@ -665,13 +665,13 @@ export class CatalogApi extends runtime.BaseAPI {
             body: formParams,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ProductResponseOutputFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateProduct201ResponseFromJSON(jsonValue));
     }
 
     /**
      * Upload a product image (multipart \"file\": SVG/PNG/JPEG, max 2 MB). Stores in object storage, sets imageUrl, emits a product.updated audit row.
      */
-    async uploadProductImage(requestParameters: UploadProductImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ProductResponseOutput> {
+    async uploadProductImage(requestParameters: UploadProductImageRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateProduct201Response> {
         const response = await this.uploadProductImageRaw(requestParameters, initOverrides);
         return await response.value();
     }
