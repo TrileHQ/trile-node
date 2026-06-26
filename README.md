@@ -1,4 +1,4 @@
-# @trile/sdk
+# @trilehq/sdk
 
 Official TypeScript SDK for the [Trile API](https://docs.trile.app) — accept recurring subscription payments in Nepal.
 
@@ -7,13 +7,13 @@ Built on the native `fetch` API, so it runs in Node.js 18+, Deno, Bun, browsers,
 ## Install
 
 ```bash
-npm install @trile/sdk
+npm install @trilehq/sdk
 ```
 
 ## Quickstart
 
 ```ts
-import { Configuration, CustomersApi } from '@trile/sdk'
+import { Configuration, CustomersApi } from '@trilehq/sdk'
 
 const trile = new Configuration({
   apiKey: process.env.TRILE_SECRET_KEY, // your nep_test_… or nep_live_… key
@@ -69,7 +69,7 @@ can read the status and the API's error body. Network/transport failures throw a
 `FetchError`.
 
 ```ts
-import { ResponseError } from '@trile/sdk'
+import { ResponseError } from '@trilehq/sdk'
 
 try {
   await customers.getCustomer({ customerId: 'cus_missing' })

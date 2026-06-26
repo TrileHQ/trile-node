@@ -13,7 +13,7 @@ inputSpec: ./openapi/trile.json
 # package.json/tsconfig/README hand-maintained via .openapi-generator-ignore.
 outputDir: .
 additionalProperties:
-  npmName: "@trile/sdk"
+  npmName: "@trilehq/sdk"
   npmVersion: "0.1.0"
   # Keep API field names exactly as the spec declares them (snake_case stays snake_case).
   modelPropertyNaming: original
