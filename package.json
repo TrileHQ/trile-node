@@ -1,6 +1,6 @@
 {
   "name": "@trilehq/sdk",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Official TypeScript SDK for the Trile API — payments infrastructure for Nepal.",
   "license": "MIT",
   "main": "./dist/index.js",

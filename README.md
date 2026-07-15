@@ -63,6 +63,19 @@ const trile = new Configuration({
 })
 ```
 
+### Base URL
+
+The SDK targets the production API (`https://api.trile.app`) out of the box — you
+only need to set `basePath` to point somewhere else, e.g. a local backend during
+development:
+
+```ts
+const trile = new Configuration({
+  apiKey: process.env.TRILE_SECRET_KEY,
+  basePath: 'http://localhost:3000',
+})
+```
+
 ## Responses
 
 Every successful response is wrapped in a `{ success, data, meta }` envelope. Your
